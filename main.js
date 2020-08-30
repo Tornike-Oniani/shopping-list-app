@@ -1,30 +1,18 @@
-const { app, BrowserWindow, Menu, ipcMain } = require('electron');
-const url = require('url');
+const { app, Menu, ipcMain } = require('electron');
 const path = require('path');
+const Window = require('./utils/window');
 
 let mainWindow;
 let addWindow;
 
 // Handle create add window
 function createAddWindow() {
-  // 1. Create new window
-  addWindow = new BrowserWindow({
+  addWindow = new Window({
+    file: path.join(__dirname, 'pages', 'add.html'),
     width: 300,
     height: 200,
     title: 'Add Item',
-    webPreferences: {
-      nodeIntegration: true,
-    },
   });
-
-  // 2. Load html
-  addWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, 'pages', 'add.html'),
-      protocol: 'file:',
-      slashes: true,
-    })
-  );
 
   // Garbage collection handle
   addWindow.on('close', () => {
@@ -62,21 +50,10 @@ const mainMenuTemplate = [
 
 // Listen for app to be ready
 app.on('ready', () => {
-  // 1. Create new window
-  mainWindow = new BrowserWindow({
-    webPreferences: {
-      nodeIntegration: true,
-    },
+  // 1. Create main window
+  mainWindow = new Window({
+    file: path.join(__dirname, 'pages', 'home.html'),
   });
-
-  // 2. Load html
-  mainWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, 'pages', 'home.html'),
-      protocol: 'file:',
-      slashes: true,
-    })
-  );
 
   //* Quit app when main window gets closed
   mainWindow.on('closed', () => {

@@ -4,11 +4,13 @@
   "description": "Shopping list app",
   "main": "main.js",
   "scripts": {
+    "rebuild": "electron-rebuild -f -w sqlite3",
     "start": "electron ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "electron-rebuild": "^2.0.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -21,6 +23,13 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
-    "electron": "^10.1.0"
+    "electron": "^10.1.0",
+    "knex": "^0.21.5",
+    "sqlite": "^4.0.14",
+    "sqlite-async": "^1.1.0",
+    "sqlite3": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=12.18.0"
   }
 }

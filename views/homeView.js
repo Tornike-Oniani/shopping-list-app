@@ -13,7 +13,7 @@ exports.removeItem = (item) => {
   }
 };
 
-exports.addItem = (item) => {
+exports.renderItem = (item) => {
   itemsList.className = 'collection';
 
   const itemMarkup = `<li class='collection-item'>${item}</li>`;
